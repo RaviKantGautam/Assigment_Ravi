@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <br><br>
+        <a href="{% url 'assignment:user_logout' %}" class="btn btn-warning">Logout</a>
+        <div class="display-4 font-weight-bolder text-center">Request Update</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="form-control font-weight-bolder">Request Type</p>
+                <p class="form-control font-weight-bolder">Request Desc</p>
+                <p class="form-control font-weight-bolder">City</p>
+                <p class="form-control font-weight-bolder">State</p>
+                <p class="form-control font-weight-bolder">Pin Code</p>
+                <p class="form-control font-weight-bolder">Alternate Phone N.</p>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control">{{ object.request_type.all|join:", " }}</p>
+                <p class="form-control">{{ object.request_desc }}</p>
+                <p class="form-control">{{ object.city }}</p>
+                <p class="form-control">{{ object.state }}</p>
+                <p class="form-control">{{ object.pincode }}</p>
+                <p class="form-control">{{ object.mobile }}</p>
+            </div>
+        </div>
+        <form method="post" class="w-50">
+            {% csrf_token %}
+            {% for f in form %}
+                <div class="form-group">
+                    {{ f|as_crispy_field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-outline-primary w-100">SUBMIT</button>
+        </form>
+        <div class="text-center form-group m-5">
+            <a href="{% url 'assignment:request' %}" class="btn btn-primary badge-pill w-50">BACK</a>
+        </div>
+    </div>
+{% endblock %}

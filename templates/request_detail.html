@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <br><br><br><br>
+        <a href="{% url 'assignment:user_logout' %}" class="btn btn-warning">Logout</a>
+        <div class="display-4 font-weight-bolder text-center">Request Detail</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="form-control font-weight-bolder">Request Type</p>
+                <p class="form-control font-weight-bolder">Request Desc</p>
+                <p class="form-control font-weight-bolder">City</p>
+                <p class="form-control font-weight-bolder">State</p>
+                <p class="form-control font-weight-bolder">Pin Code</p>
+                <p class="form-control font-weight-bolder">Alternate Phone N.</p>
+                <p class="form-control font-weight-bolder">Status</p>
+                <p class="form-control font-weight-bolder">Remarks</p>
+                <p class="form-control font-weight-bolder">Updated By</p>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control">{{ object.request_type.all|join:", " }}</p>
+                <p class="form-control">{{ object.request_desc }}</p>
+                <p class="form-control">{{ object.city }}</p>
+                <p class="form-control">{{ object.state }}</p>
+                <p class="form-control">{{ object.pincode }}</p>
+                <p class="form-control">{{ object.mobile }}</p>
+                <p class="form-control">{{ object.get_status_display }}</p>
+                <p class="form-control">{{ object.remarks }}</p>
+                <p class="form-control">{{ object.user }}</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'assignment:request' %}" class="btn btn-primary badge-pill w-50">BACK</a>
+        </div>
+    </div>
+{% endblock %}

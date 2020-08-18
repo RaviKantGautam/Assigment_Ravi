@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <br><br><br><br>
+    <a href="{% url 'assignment:user_logout' %}" class="btn btn-warning">Logout</a>
+    <div class="display-4 font-weight-bolder text-center">Request List</div>
+    <table class="table table-bordered table-hover">
+        <thead class="bg-dark text-white">
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Desc</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td>{{ object.pk }}</td>
+                <td>{{ object.request_type.all|join:", " }}</td>
+                <td>{{ object.request_desc }}</td>
+                <td>{{ object.date }}</td>
+                <td>{{ object.status }}</td>
+                <td>
+                    <a class="btn btn-success" href="{% url 'assignment:update' object.id %}">Update</a>
+                    <a class="btn btn-warning" href="{% url 'assignment:detail' object.id %}">View</a>
+{#                    <a class="btn btn-danger" href="{% url 'assignment:delete' object.id %}">Delete</a>#}
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <div class="text-center">
+        <a href="{% url 'assignment:create' %}" class="btn btn-primary badge-pill w-50">New Request</a>
+    </div>
+    <br><br><br><br>
+{% endblock %}
