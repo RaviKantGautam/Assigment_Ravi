@@ -14,10 +14,11 @@ from django.contrib import messages
 @unauthenticated_user
 def user_Registration(request):
     if request.method == 'POST':
+        next = QueryDict(request.META['QUERY_STRING']).get('next') or '/user_login'
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('assignment:login')
+            return HttpResponseRedirect(next)
         else:
             return render(request, 'registration.html', {'form': form})
     else:
