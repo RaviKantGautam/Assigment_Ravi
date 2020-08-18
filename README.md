@@ -8,3 +8,7 @@
 #### 6. In this project, i have also created delete_view but it has been commented out as per the assignment requirements.
 #### 7. In this project i have used sqllite3 database for storing data.
 #### 8. In this project i have also worked on login, authentication, logout, redirects.
+-------------------------------------------------------------------------------------------------------------------
+#### There is two in terface in the project (admin and client)
+#### So, to login as admin ravi@gmail.com password are the credentail
+#### Login as client client@gmail.com password
